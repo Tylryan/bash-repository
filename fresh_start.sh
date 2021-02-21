@@ -24,4 +24,4 @@ if [ $1 == "-r" ];then
 else
 	# Reboot your computer
 	reboot
-
+fi
