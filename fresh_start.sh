@@ -1,8 +1,6 @@
 #! /usr/bin/bash
 
 options=$1
-remove= cd .. ; rm -rf bash_repository/
-
 
 # Make A bin directory
 mkdir ~/bin
@@ -17,12 +15,12 @@ cp -r `ls` ~/bin
 PATH=$PATH:$HSME/bin
 
 if [[ $options =~ "r" ]] && [[ $options =~ "R" ]];then
-	$remove
-	 reboot
+    cd .. ; rm -rf bash_repository/
+    reboot
 	
 elif [[ $options == "-R" ]];then
         # Removing the original bash_repository
-	$remove
+    cd .. ; rm -rf bash_repository/
 elif [[ $options == "-r" ]];then
 	#Reboot your computer
 	reboot
