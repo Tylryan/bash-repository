@@ -1,17 +1,20 @@
 # In case I lose everything on my computer, I will have this.
 # Make fresh_start.sh excecutable and run it.
-It should do the following
+## It should do the following
 * Create a bin directory in ~/
- * Note: If you already have one there, it will replace whatevers in it!!!
+	* Note: If you already have one there, it will replace whatevers in it!!!
 * Make all your .sh files excecutable
 * Move them to the new bin directory
 * Set that directory as a PATH
 * Restart your computer
 
-Options
-* -Rr This will both reboot and remove bash_repositories
-* -R This only removes the bash_repositories
-* -r This only reboots your computer.
+## Options
+* ### -Rr 
+	* This will both reboot and remove bash_repositories
+* ### -R 
+	* This only removes the bash_repositories
+* ### -r 
+	* This only reboots your computer.
 
 After your computer restarts, you should be able to run your .sh files from anywhere in the terminal.
 
@@ -36,5 +39,6 @@ This runs my tracker program.
 
 Automatically back up my sh repository.
 
-Options
--u This allows you to update your readme before you commit.
+## Options
+* ### -u 
+	* This allows you to update your readme before you commit.
