@@ -1,7 +1,16 @@
 # bash_repository
 In case I lose everything on my computer, I will have this.
-* Make fresh_start.sh excecutable and run it.
-* It should copy all of your files to your bin folder, make them excecutable, set that location as a PATH, and restart your computer.
+# Make fresh_start.sh excecutable and run it.
+It should do the following
+* Create a bin directory in ~/
+* Make all your .sh files excecutable
+* Move them to the new bin directory
+* Set that directory as a PATH
+* Restart your computer
+
+After your computer restarts, you should be able to run your .sh files from anywhere in the terminal.
+
+# Other Scripts 
 
 ## add_git
 Automatically performs a git push
