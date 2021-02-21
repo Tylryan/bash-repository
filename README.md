@@ -1,5 +1,4 @@
-# bash_repository
-In case I lose everything on my computer, I will have this.
+# In case I lose everything on my computer, I will have this.
 # Make fresh_start.sh excecutable and run it.
 It should do the following
 * Create a bin directory in ~/

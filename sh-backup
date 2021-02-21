@@ -1,0 +1,15 @@
+#! /usr/bin/bash
+
+# Copy files from ~/bin to ~/bash_repository
+
+cp ~/bin/* ~/bash_repository
+
+# Go to bash_repository
+
+cd ~/bash_repository
+
+# Git push
+
+git add .; git commit -m "Backing up my sh files" ; git push
+
+
