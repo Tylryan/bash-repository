@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 options=$1
-remove= rm -rf bash_repository/
+remove= cd .. ; rm -rf bash_repository/
 
 
 # Make A bin directory
@@ -11,9 +11,7 @@ mkdir ~/bin
 chmod 744 `ls`
 
 # Move the files to bin
-mv `ls` ~/bin
-
-# cp -r `ls`...
+cp -r `ls` ~/bin
 
 # Let bash know you want to read binaries from that location
 PATH=$PATH:$HSME/bin
