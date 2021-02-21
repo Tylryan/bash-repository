@@ -2,7 +2,7 @@
 
 update_readme=$1
 
-if [ $update_readme == 'yes' ];then
+if [ $update_readme == '-u' ];then
     # Pull before you send
 
     cd ~/bash_repository
