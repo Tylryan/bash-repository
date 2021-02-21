@@ -7,6 +7,8 @@ It should do the following
 * Set that directory as a PATH
 * Restart your computer
 
+Note: If you want to remove the initial bash_repository only have bin, type -u as an option.
+
 After your computer restarts, you should be able to run your .sh files from anywhere in the terminal.
 
 # Other Scripts 
