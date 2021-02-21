@@ -30,3 +30,4 @@ This runs my tracker program.
 
 Automatically back up my sh repository.
 
+If you add the option -u, then it will open the readme so you can change it before you push.
