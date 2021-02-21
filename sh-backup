@@ -1,21 +1,42 @@
 #! /usr/bin/bash
 
-# Pull before you send
+update_readme=$1
 
-cd ~/bash_repository
+if [ $update_readme == 'yes' ];then
+    # Pull before you send
 
-git pull 
+    cd ~/bash_repository
 
-# Copy files from ~/bin to ~/bash_repository
+    git pull 
+    
+    # Update the readme 
+    
+    nano README.md ;
 
-cp ~/bin/* ~/bash_repository
+    # Copy files from ~/bin to ~/bash_repository
 
-# Go to bash_repository
+    cp ~/bin/* ~/bash_repository
 
-#cd ~/bash_repository
+    # Git push
 
-# Git push
+    git add .; git commit -m "Backing up my sh files" ; git push
+else
+    # Pull before you send
 
-git add .; git commit -m "Backing up my sh files" ; git push
+    cd ~/bash_repository
+
+    git pull 
+
+    # Copy files from ~/bin to ~/bash_repository
+
+    cp ~/bin/* ~/bash_repository
+
+    # Git push
+
+    git add .; git commit -m "Backing up my sh files" ; git push
+
+fi
+
+
 
 
