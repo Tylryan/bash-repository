@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 options=$1
-remove= cd .. ; rm -rf bash_repository/
+remove= rm -rf bash_repository/
 
 
 # Make A bin directory
@@ -13,16 +13,19 @@ chmod 744 `ls`
 # Move the files to bin
 mv `ls` ~/bin
 
+# cp -r `ls`...
+
 # Let bash know you want to read binaries from that location
 PATH=$PATH:$HSME/bin
 
 if [[ $options =~ "r" ]] && [[ $options =~ "R" ]];then
-	$remove ; reboot
+	$remove
+	 reboot
 	
 elif [[ $options == "-R" ]];then
         # Removing the original bash_repository
 	$remove
-elif [[ $options == "-r"]]
-	# Reboot your computer
+elif [[ $options == "-r" ]];then
+	#Reboot your computer
 	reboot
 fi
