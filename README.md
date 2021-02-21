@@ -25,3 +25,8 @@ This just copies the original Rice Fintech Bootcamp's directory to another direc
 
 ## tracker.sh
 This runs my tracker program.
+
+## sh-backup
+
+Automatically back up my sh repository.
+
