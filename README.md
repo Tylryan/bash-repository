@@ -7,7 +7,10 @@ It should do the following
 * Set that directory as a PATH
 * Restart your computer
 
-Note: If you want to remove the initial bash_repository only have bin, type -u as an option.
+Options
+* -Rr This will both reboot and remove bash_repositories
+* -R This only removes the bash_repositories
+* -r This only reboots your computer.
 
 After your computer restarts, you should be able to run your .sh files from anywhere in the terminal.
 
@@ -32,4 +35,5 @@ This runs my tracker program.
 
 Automatically back up my sh repository.
 
-If you add the option -u, then it will open the readme so you can change it before you push.
+Options
+-u This allows you to update your readme before you commit.
