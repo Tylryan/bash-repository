@@ -2,6 +2,7 @@
 # Make fresh_start.sh excecutable and run it.
 It should do the following
 * Create a bin directory in ~/
+ * Note: If you already have one there, it will replace whatevers in it!!!
 * Make all your .sh files excecutable
 * Move them to the new bin directory
 * Set that directory as a PATH
