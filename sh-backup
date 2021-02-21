@@ -1,12 +1,18 @@
 #! /usr/bin/bash
 
+# Pull before you send
+
+cd ~/bash_repository
+
+git pull 
+
 # Copy files from ~/bin to ~/bash_repository
 
 cp ~/bin/* ~/bash_repository
 
 # Go to bash_repository
 
-cd ~/bash_repository
+#cd ~/bash_repository
 
 # Git push
 
