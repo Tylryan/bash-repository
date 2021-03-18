@@ -1,5 +1,5 @@
 #! /usr/bin/bash
 
-cd ~/Coding_Projects/Python/tracker && python3 main.py
+cd ~/Coding/Python/tracker && python3 main.py
 
 
