@@ -11,7 +11,7 @@ if [ $update_readme == '-u' ];then
     
     # Update the readme 
     
-    nano README.md ;
+    $EDITOR README.md ;
 
     # Copy files from ~/bin to ~/bash_repository
 
@@ -19,7 +19,7 @@ if [ $update_readme == '-u' ];then
 
     # Git push
 
-    git add . && git commit -m "Backing up my sh files" && git push
+    git add . && git commit -m "Backing up my sh files on `date`" && git push
 else
     # Pull before you send
 
