@@ -33,7 +33,7 @@ else
 
     # Git push
 
-    git add . && git commit -m "Backing up my sh files" && git push
+    git add . && git commit -m "Backing up my sh files on `date`" && git push
 
 fi
 
