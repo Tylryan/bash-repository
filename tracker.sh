@@ -1,5 +1,5 @@
 #! /usr/bin/bash
 
-cd ~/Coding/Python/tracker && python3 main.py
+cd $(find ~/ -name tracker) && python3 main.py
 
 

@@ -5,7 +5,7 @@ update_readme=$1
 if [ $update_readme == '-u' ];then
     # Pull before you send
 
-    cd ~/bash_repository
+	cd $(find ~/ -name bash_repository) 
 
     git pull &&
     
@@ -15,7 +15,7 @@ if [ $update_readme == '-u' ];then
 
     # Copy files from ~/bin to ~/bash_repository
 
-    cp ~/bin/* ~/bash_repository &&
+    cp ~/bin/* $(find ~/ -name bash_repository)
 
     # Git push
 
@@ -23,13 +23,13 @@ if [ $update_readme == '-u' ];then
 else
     # Pull before you send
 
-    cd ~/bash_repository
+    cd $(find ~/ -name bash_repository)
 
     git pull &&
 
     # Copy files from ~/bin to ~/bash_repository
 
-    cp ~/bin/* ~/bash_repository &&
+    cp ~/bin/* $(find ~/ -name bash_repository) &&
 
     # Git push
 
