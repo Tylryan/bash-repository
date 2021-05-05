@@ -16,6 +16,7 @@ if [ -d "~/bin/" ];then
 # Else, make that directory then ...
 else
     mkdir ~/bin/ && cp bash_repository/* ~/bin/ 
+fi
 
 # Checks to see if you have zsh
 case $SHELL in 
@@ -31,13 +32,13 @@ esac
 
 # Remove the original bash_repository and reboot.
 if [[ $options =~ "r" ]] && [[ $options =~ "R" ]];then # Works 02/21/21
-    cd .. ; rm -rf bash_repository/
+    rm -rf ~/bash_repository/
     reboot
 	
 # Remove the original bash repository, but no reboot.
 elif [[ $options == "-R" ]];then #This works 02/21/21
         # Removing the original bash_repository
-    cd .. ; rm -rf bash_repository/
+    rm -rf ~/bash_repository/
 
 # Reboot, but don't remove the origina bash repository.
 elif [[ $options == "-r" ]];then # Works 02/21/21
