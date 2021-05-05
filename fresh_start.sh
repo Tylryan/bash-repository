@@ -6,7 +6,16 @@ options=$1
 chmod 744 `ls`
 
 # Copy the files to bin if there. If not, make them and move there.
-cp -r `ls` ~/bin || mkdir ~/bin ; cp -r `ls` ~/bin &&
+# cp -r `ls` ~/bin || mkdir ~/bin ; cp -r `ls` ~/bin &&
+# Go back a directory
+cd ..
+
+# If "~/bin/ exists, then copy all bash_repository contents to it"
+if [ -d "~/bin/" ];then
+    cp bash_repository/* ~/bin/
+# Else, make that directory then ...
+else
+    mkdir ~/bin/ && cp bash_repository/* ~/bin/ 
 
 # Checks to see if you have zsh
 case $SHELL in 
