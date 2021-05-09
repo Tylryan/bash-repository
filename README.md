@@ -44,3 +44,9 @@ Automatically back up my sh repository.
 ## Options
 - ### -u 
 	- This allows you to update your readme before you commit.
+
+## git-ssh-setup
+Automatically downloads Private and Public keys.
+Copies the public key to your clipboard.
+
+You just have to paste that into your github account settings.
