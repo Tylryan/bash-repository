@@ -3,12 +3,10 @@ sudo pacman -Syu
 
 # Putting all my files back
 git clone https://github.com/Tylryan/bash_repository.git
-cd bash_repository && ./install.sh && cd ~/bin/ && ./git-ssh-setup.sh
-cd
+./bash_repository/install.sh && ~/bin/git-ssh-setup.sh
 rm -rf ~/.config/bspwm/ 
 git clone git@github.com:Tylryan/bspwm-config.git bspwm && mv bspwm ~/.config
 git clone git@github.com:Tylryan/zsh_config.git zsh ; mv zsh ~/.config
-
 zsh
 git clone git@github.com:Tylryan/task_warrior_backup.git task && mv task .config/
 git clone git@github.com:Tylryan/nvim_backup.git
