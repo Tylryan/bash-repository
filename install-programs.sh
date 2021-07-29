@@ -27,8 +27,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/zsh/p
 git clone git@github.com:Tylryan/task_warrior_backup.git task && mv task .config/
 git clone git@github.com:Tylryan/nvim_backup.git
 
-echo "\$TASKRC='~/.config/task'" >> .zshrc
-echo "\$TASKDATA='~/.config/task'" >> .zshrc
+echo "export TASKRC='~/.config/task/.taskrc'" >> .zshrc
+echo "export TASKDATA='~/.config/task/.task'" >> .zshrc
 
 git clone git@github.com:Tylryan/Notes.git
 # Applications
@@ -45,9 +45,9 @@ yay -S brave-bin eclipse-java-bin
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 
-echo "doom='.config/zsh/Aliases/aliases.zsh'" >> .zshrc
+echo "alias doom='.emacs.d/bin/doom'" >> .config/zsh/Aliases/aliases.zsh
 cd .emacs.d/ ; ./doom sync
-echo "***********************************
+echo "***********************************"
 echo "Rebooting"
 sleep 5
 reboot
