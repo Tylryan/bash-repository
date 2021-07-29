@@ -1,5 +1,6 @@
 #! /usr/bin/bash
 
+# If you used git clone git@Tylryan/bash_repository, then this should be redundant
 update_readme=$1
 
 if [ $update_readme == '-u' ];then
