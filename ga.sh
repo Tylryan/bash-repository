@@ -22,6 +22,8 @@ commit_message=$2
 #        cd "${location}" && git add . && git commit -m "${message}" && git push
 #fi
 
+#
+
 if [ $message = ":" ]
 then
     git add . && git commit -m "${commit_message}" ; git push
