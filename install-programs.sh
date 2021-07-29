@@ -4,6 +4,9 @@ sudo pacman -Syu
 
 #               Putting all my files back
 ./bin/git-ssh-setup.sh
+sleep 45
+echo "SSH Copied"
+echo "Waiting for 45 seconds to allow you to paste that SSH to Github."
 rm -rf ~/.config/bspwm/ 
 git clone git@github.com:Tylryan/bspwm-config.git bspwm && mv bspwm ~/.config
 
@@ -32,7 +35,7 @@ git clone git@github.com:Tylryan/Notes.git
 sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake
 
 # Coding Stuff
-sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript 
+sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript mariadb mysql-workbench
 
 # AUR
 
@@ -42,6 +45,9 @@ yay -S brave-bin eclipse-java-bin
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 
+echo "doom='.config/zsh/Aliases/aliases.zsh'" >> .zshrc
 cd .emacs.d/ ; ./doom sync
-
+echo "***********************************
+echo "Rebooting"
+sleep 5
 reboot
