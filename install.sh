@@ -1,5 +1,9 @@
 #! /usr/bin/bash
 
+# Directions
+# git clone git@xxx bin
+# This way is a much simpler design than what I've got below.
+
 options=$1
 
 # Make the files executable
