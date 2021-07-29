@@ -25,7 +25,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/zsh/p
 
 
 git clone git@github.com:Tylryan/task_warrior_backup.git task && mv task .config/
-git clone git@github.com:Tylryan/nvim_backup.git
+git clone git@github.com:Tylryan/nvim_backup.git nvim ; mv nvim .config/
 
 echo "export TASKRC='~/.config/task/.taskrc'" >> .zshrc
 echo "export TASKDATA='~/.config/task/.task'" >> .zshrc
