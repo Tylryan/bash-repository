@@ -2,8 +2,21 @@
 # git add . ; git commit ; git push
 
 
-message=$1
+has_message=$1
 commit_message=$2
+
+if [ $has_message = ":" ]
+then
+    git add . && git commit -m "${commit_message}" ; git push
+else
+    #Then push in the current directoryw ith the message being the current date and time
+    git add . && git commit	-m "Auto-commit on `date +"%A, %m-%d-%Y, at %I:%M %p"`" && git push
+fi
+
+
+
+
+# I WILL LEAVE THIS HERE TO SHOW MYSELF THAT MORE COMPLICATED IS NOT ALWAYS BETTER.
 
 ## If there is neither a message nor location
 #if [ -z $1 ] && [ -z $2 ]
@@ -21,14 +34,3 @@ commit_message=$2
 ##         Then go to that location and do a git push with the specified message
 #        cd "${location}" && git add . && git commit -m "${message}" && git push
 #fi
-
-#
-
-if [ $message = ":" ]
-then
-    git add . && git commit -m "${commit_message}" ; git push
-else
-    #Then push in the current directoryw ith the message being the current date and time
-    git add . && git commit	-m "Auto-commit on `date +"%A, %m-%d-%Y, at %I:%M %p"`" && git push
-fi
-
