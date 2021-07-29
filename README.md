@@ -1,28 +1,13 @@
 # In case I lose everything on my computer, I will have this.
-# Run install.sh
-## It should do the following
-- Create a bin directory in ~/
-    - If you have one there, it shouldn't replace anything.
-- Move them to the new bin directory
-- Set that directory as a PATH in whichever shell you are using.
-- Restart your computer if you so choose.
 
-## Options
-### -Rr 
-    - This will both reboot and remove bash_repository
+# How to use it
+1. Cd to your home directory
+2. `git clone git@Tylryan/bash_repository bin`
 
-### -R 
-	- This only removes the bash_repositories
-### -r 
-	- This only reboots your computer.
-
-I would recommend at least using `-r`. It's cleaner.
-
-After your computer restarts, you should be able to run your .sh files from anywhere in the terminal.
 
 # Other Scripts 
 
-## add_git
+## gp.sh
 Automatically performs a git push
 - message = $1
   - Put this in quotes
@@ -31,7 +16,7 @@ Automatically performs a git push
 Note: Message and Location are optional. If you don't enter in either, the commit message will be whatever the current day is.
 E.g "Auto-commit on Xday, XX-XX-XX at XX:XX AM/PM"
 
-## rice-copy
+## rice-copy.sh
 This just copies the original Rice Fintech Bootcamp's directory to another directory.
 
 ## tracker.sh
@@ -45,7 +30,7 @@ Automatically back up my sh repository.
 - ### -u 
 	- This allows you to update your readme before you commit.
 
-## git-ssh-setup
+## ssh-setup.sh
 Automatically downloads Private and Public keys.
 Copies the public key to your clipboard.
 
