@@ -32,7 +32,7 @@ echo "export TASKDATA='~/.config/task/.task'" >> .zshrc
 
 git clone git@github.com:Tylryan/Notes.git
 # Applications
-sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks
+sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks anki
 
 # Coding Stuff
 sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript mariadb mysql-workbench
