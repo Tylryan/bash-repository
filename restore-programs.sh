@@ -32,14 +32,14 @@ echo "export TASKDATA='~/.config/task/.task'" >> .zshrc
 
 git clone git@github.com:Tylryan/Notes.git
 # Applications
-sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks anki wmname
+sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks anki wmname intellij-idea-community-edition
 
 # Coding Stuff
 sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript mariadb mysql-workbench
 
 # AUR
 
-yay -S brave-bin eclipse-java-bin
+yay -S brave-bin eclipse-java-bin postman-bin 
 
 # DOOM EMACS
 git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
