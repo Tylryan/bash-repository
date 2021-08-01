@@ -14,7 +14,7 @@ git clone git@github.com:Tylryan/bspwm-config.git bspwm && mv bspwm ~/.config
 git clone git@github.com:Tylryan/zsh_config.git zsh ; mv zsh ~/.config
 
 cp .config/zsh/.p10k.zsh ~/
-cp .config/zsh/.zshrc ~/
+ln .config/zsh/.zshrc ~/.zshrc
 
 #               Syntax Highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/plugins/zsh-syntax-highlighting
