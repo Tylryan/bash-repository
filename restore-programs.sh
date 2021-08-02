@@ -3,7 +3,7 @@ cd
 sudo pacman -Syu
 
 #               Putting all my files back
-./bin/git-ssh-setup.sh
+./bin/ssh-setup.sh
 sleep 45
 echo "SSH Copied"
 echo "Waiting for 45 seconds to allow you to paste that SSH to Github."
@@ -32,7 +32,7 @@ echo "export TASKDATA='~/.config/task/.task'" >> .zshrc
 
 git clone git@github.com:Tylryan/Notes.git
 # Applications
-sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks anki wmname intellij-idea-community-edition
+sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks gnome-keyring anki wmname intellij-idea-community-edition
 
 # Coding Stuff
 sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript mariadb mysql-workbench
