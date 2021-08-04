@@ -5,8 +5,7 @@
 has_message=$1
 commit_message=$2
 
-if [ $has_message = ":" ]
-then
+if [[ $has_message = ":" ]]; then
     git add . && git commit -m "${commit_message}" ; git push
 else
     #Then push in the current directoryw ith the message being the current date and time
