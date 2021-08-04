@@ -2,8 +2,7 @@
 gp=`~/bin/gp.sh`
 cd ~/bin && ${gp} &
 sleep 5
-echo "Done"
-cd ~/Notes && ${gp}&
+cd ~/Notes && sleep 2 && pwd && ${gp}&
 sleep 5
 echo "Done"
 cp -r ~/.config/polybar/* ~/.config/bspwm/polybar.outer
