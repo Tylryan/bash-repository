@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+export GIT_SSL_NO_VERIFY=1
 gp=`~/bin/gp.sh`
 cd ~/bin && ${gp} &
 sleep 5
@@ -22,3 +23,4 @@ echo "Done"
 cd ~/.config/zsh/ && ${gp} &
 sleep 5
 echo "Done"
+export GIT_SSL_NO_VERIFY=0
