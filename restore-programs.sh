@@ -35,7 +35,10 @@ git clone git@github.com:Tylryan/Notes.git
 sudo pacman -S firefox neovim taskwarrior-tui npm emacs ripgrep fd cmake gnome-clocks gnome-keyring anki wmname intellij-idea-community-edition arandr
 
 # Coding Stuff
-sudo pacman -S lua jre-openjdk jre-openjdk-headless jdk-openjdk maven tomcat10 typescript mariadb mysql-workbench
+sudo pacman -S lua maven typescript nodejs mariadb mysql-workbench 
+
+# Global NPM Packages
+# node i -g nodemon
 
 # AUR
 
