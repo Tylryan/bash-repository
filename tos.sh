@@ -1,1 +1,1 @@
-cd ~/Applications/thinkorswim/ ; ./thinkorswim &
+cd ~/Applications/thinkorswim/thinkorswim && ./thinkorswim &
