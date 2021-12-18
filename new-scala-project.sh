@@ -1,3 +1,8 @@
+if [[ -z $1 ]];then
+    echo "Enter the name of the project"
+    echo "E.g. ssc hello-world"
+    exit 1
+fi
 sbt new scala/hello-world.g8 --name=$1
 echo 'Global / onChangedBuildSource := ReloadOnSourceChanges
 libraryDependencies ++= Seq(
@@ -16,9 +21,12 @@ lazy val root = (project in file(".")) // Determines the baseDirectory
         "-Yawrn-dead-code", "-explaintypes", "opt:_", "-Xdev")
     )'\
 > $1/build.sbt
-if [[ -z $1 ]];then
-    echo "Enter the name of the project"
-    echo "E.g. ssc hello-world"
-    exit 1
-fi
 echo 'addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.15.0")' > $1/project/plugins.sbt
+cd $1
+echo "------------------------------------------------------------"
+echo "                  S B T    C O M M A N D S"
+echo "------------------------------------------------------------"
+echo "sbt run: Runs your project"
+echo "sbt compile: Compiles your project"
+echo "sbt assembly: Creates a jar file. Works with Java and Scala
+If you use Java run: java -jar target/scala-2.13/default-assembly-0.0.0.jar"
