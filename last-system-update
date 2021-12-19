@@ -1,1 +1,5 @@
-cat /var/log/pacman.log | cut -d"[" -f2 | cut -d"]" -f1 | cut -d"-" -f1-3 | tr "T" " " | tail -n1
+#!/usr/bin/bash
+cat /var/log/pacman.log | \
+    grep -i "system upgrade" | cut -d'[' -f2 | \
+    cut -d']' -f1 | cut -d'-' -f1-3 | tr "T" " " | \
+    tail -n1

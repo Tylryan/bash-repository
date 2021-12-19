@@ -6,7 +6,10 @@ fi
 sbt new scala/hello-world.g8 --name=$1
 echo 'Global / onChangedBuildSource := ReloadOnSourceChanges
 libraryDependencies ++= Seq(
-"org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
+"org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+"io.spray" %% "spray-json" % "1.3.6",
+"org.apache.spark" %% "spark-core" % "3.2.0",
+"org.apache.spark" %% "spark-sql" % "3.2.0" % "provided"
 )
 lazy val root = (project in file(".")) // Determines the baseDirectory
     .settings(
