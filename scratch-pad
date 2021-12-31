@@ -1,0 +1,38 @@
+#!/usr/bin/bash
+
+language=$1
+practice_directory=~/Notes/Computers/Coding/Coding-Languages
+
+if [[ $language == "" ]];then
+    echo "Err: No argument entered"
+    exit 1
+fi
+case $language in
+    python)
+        # I chose to cd to the directory so that you could add files delete files more easily
+        cd $practice_directory/Python/scratch
+        nvim src/scratch.py;;
+    scala)
+        cd $practice_directory/Scala/Basics/scratch
+        nvim src/main/scala/Main.scala;;
+    c)
+        echo "Not Created Yet";;
+    cpp)
+        cd $practice_directory/Cpp/scratch/
+        nvim src/branch.cpp;;
+    javascript)
+        cd $practice_directory/Javascript/scratch
+        nvim main.js;;
+    bash)
+        cd $practice_directory/Bash-Scripting/scratch
+        nvim main.sh;;
+    rust)
+        cd $practice_directory/Rust/scratch
+        nvim src/main.rs;;
+    *)
+        echo "Err: $language is not a valid entry";;
+esac
+
+
+
+
