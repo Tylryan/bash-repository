@@ -8,27 +8,31 @@ if [[ $language == "" ]];then
     exit 1
 fi
 case $language in
-    python)
-        # I chose to cd to the directory so that you could add files delete files more easily
-        cd $practice_directory/Python/scratch
-        nvim src/scratch.py;;
-    scala)
-        cd $practice_directory/Scala/Basics/scratch
-        nvim src/main/scala/Main.scala;;
+    asm | assembly)
+        cd $practice_directory/Assembly/basics/scratch/
+        nvim main.asm;;
     c)
-        echo "Not Created Yet";;
+        cd $practice_directory/C/scratch
+        nvim src/branch.c;;
     cpp)
         cd $practice_directory/Cpp/scratch/
         nvim src/branch.cpp;;
-    javascript)
+    js | javascript)
         cd $practice_directory/Javascript/scratch
         nvim main.js;;
-    bash)
-        cd $practice_directory/Bash-Scripting/scratch
-        nvim main.sh;;
-    rust)
+    py | python)
+        # I chose to cd to the directory so that you could add files delete files more easily
+        cd $practice_directory/Python/scratch
+        nvim src/scratch.py;;
+    rs | rust)
         cd $practice_directory/Rust/scratch
         nvim src/main.rs;;
+    scala)
+        cd $practice_directory/Scala/Basics/scratch
+        nvim src/main/scala/Main.scala;;
+    sh | bash)
+        cd $practice_directory/Bash-Scripting/scratch
+        nvim main.sh;;
     *)
         echo "Err: $language is not a valid entry";;
 esac

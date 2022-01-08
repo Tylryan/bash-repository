@@ -1,0 +1,37 @@
+#!/usr/bin/bash
+
+# Find the source code to a C header file 
+# Same thing as "gf" in vim, but you don't need to be in vim to use it.
+
+# EXIT_STATUS=$($?) # Can't get this to work
+PATH_TO_HEADER_FILES='/usr/include'
+FZF_LAYOUT='--height=40% --border=rounded'
+FLAG=$1
+
+SUCCESS=0
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
+
+find_source_code (){
+    find_source_code_help
+    header_file=$(ls /usr/include | fzf $FZF_LAYOUT)
+    # If the previous exit status is not 0, then exit this program with a failure status
+    [[ $? -ne $SUCCESS ]] && exit $EXIT_FAILURE
+    nvim $PATH_TO_HEADER_FILES/$header_file
+
+
+    exit $EXIT_SUCCESS
+
+}
+
+find_source_code_help (){
+    case $FLAG in
+        -h | --help)
+            echo -e "DESCRIPTION
+\tA script that searches your /usr/include directory and takes you
+\tto whichever header file you choose"
+            exit $EXIT_SUCCESS;;
+    esac
+
+}
+find_source_code

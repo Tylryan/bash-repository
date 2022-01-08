@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+assembly_file=`ls | grep *asm | cut -d'.' -f1`
+executable_path=""
+
+if [[ $1 != "" ]];then
+    executable_path=build/$1
+else
+    executable_path=`find build -type f -executable 2>/dev/null || echo "build/out"`
+fi
+
+[ -d "build" ] || mkdir build
+# Compile
+yasm -f elf64 -o build/$assembly_file.o $assembly_file.asm
+# Create Executable
+ld -m elf_x86_64 build/$assembly_file.o -o $executable_path
+# Run Executable
+./$executable_path
+
+# Replace YASM and LD with the following for 32 bit computers
+# yasm -f elf -o build/$assembly_file.o $assembly_file.asm
+# ld -m elf_i386 build/$assembly_file.o -o $executable_path

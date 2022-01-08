@@ -4,13 +4,37 @@
 
 has_message=$1
 commit_message=$2
+EXIT_SUCCESS=0
+FLAG=1
 
-if [[ $has_message = ":" ]]; then
-    git add . && git commit -m "${commit_message}" ; git push
-else
-    #Then push in the current directoryw ith the message being the current date and time
-    git add . && git commit	-m "Auto-commit on `date +"%A, %m-%d-%Y, at %I:%M %p"`" && git push
-fi
+quick-git-push(){
+
+    quick-git-push-help
+
+    if [[ $has_message = ":" ]]; then
+        git add . && git commit -m "${commit_message}" ; git push
+    else
+        #Then push in the current directoryw ith the message being the current date and time
+        git add . && git commit	-m "Auto-commit on `date +"%A, %m-%d-%Y, at %I:%M %p"`" && git push
+    fi
+    exit EXIT_SUCCESS
+}
+
+quick-git-push-help(){
+    case $FLAG in
+        -h | --help)
+            echo -e "DESCRIPTION
+\tA script that performs the following commands
+    \t1. git add .
+    \t2. git commit -m \"your own message OR current date\"
+    \t3. git push
+USE
+\tgp : [optional message]"
+            exit EXIT_SUCCESS;;
+    esac
+
+}
+quick-git-push
 
 
 
@@ -32,4 +56,4 @@ fi
 #    then
 ##         Then go to that location and do a git push with the specified message
 #        cd "${location}" && git add . && git commit -m "${message}" && git push
-#fi
+# fi

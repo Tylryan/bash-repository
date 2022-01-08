@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+SEARCH_TERM=$1
+NARROW_SEARCH=^${SEARCH_TERM}
+FLAG=$2
+EXIT_SUCCESS=0
+
+search-man (){
+    case $SEARCH_TERM in
+        -h | --help)
+            search-man-help
+            exit $EXIT_SUCCESS;;
+    esac
+
+    case $FLAG in
+        -b)  # Broad Search
+            man -k $SEARCH_TERM | grep -w $SEARCH_TERM --color;;
+        -B) # VERY BROAD
+            man -k $SEARCH_TERM | grep $SEARCH_TERM --color;;
+        *) # Default is a narrow search
+            man -k $SEARCH_TERM | grep -w $NARROW_SEARCH --color;;
+    esac
+
+    exit $EXIT_SUCCESS
+}
+
+
+search-man-help(){
+    echo -e "DESCRIPTION
+\tProvides a more refined result when searching the man pages
+USE
+\tsearch-man [search_term] [options]
+OPTIONS
+\t-b\tBroad search
+\t-B\tVery Broad Search
+DEFAULT OPTION
+\tNarrow Search is set by default"
+}
+search-man
+

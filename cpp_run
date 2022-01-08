@@ -2,11 +2,29 @@
 
 # When first ran, it might not run your program after compiling
 # Just run it again
-executable=`find build -maxdepth 1 -type f`
-cmake -S . -B build && make -C build
-for value in $executable
-do
-    if [[ -x $value ]];then
-        ./$value
-    fi
-done
+FLAG=$1
+
+cpp_run (){
+    case $FLAG in
+        -h | --help)
+            cpp-run-help
+            exit 0
+    esac
+
+    executable=`find build -maxdepth 1 -type f`
+    cmake -S . -B build -Werror=dev && make -C build
+    for value in $executable
+    do
+        if [[ -x $value ]];then
+            ./$value
+        fi
+    done
+}
+cpp-run-help(){
+    echo -e "DESCRIPTION
+\tA simple script that runs cmake and make, then executes your program.
+USE
+\tRun \"cpp_run\" without any options wherever your CMake file is located."
+}
+
+cpp_run
