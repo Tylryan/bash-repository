@@ -21,7 +21,7 @@ quick-git-push(){
         git add . && git commit	-m "Auto-commit on `date +"%A, %m-%d-%Y, at %I:%M %p"`" && git push
         # Could add [[ $? -eq 0 ]] || exit EXIT_FAILURE
     fi
-    exit EXIT_SUCCESS
+    exit $EXIT_SUCCESS
 }
 
 quick-git-push-help(){
