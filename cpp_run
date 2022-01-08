@@ -3,14 +3,11 @@
 # When first ran, it might not run your program after compiling
 # Just run it again
 FLAG=$1
+EXIT_SUCCESS=1
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
 
 cpp_run (){
-    case $FLAG in
-        -h | --help)
-            cpp-run-help
-            exit 0
-    esac
-
+    cpp-run-help
     executable=`find build -maxdepth 1 -type f`
     cmake -S . -B build -Werror=dev && make -C build
     for value in $executable
@@ -19,12 +16,18 @@ cpp_run (){
             ./$value
         fi
     done
+
+    exit $EXIT_SUCCESS
 }
 cpp-run-help(){
-    echo -e "DESCRIPTION
-\tA simple script that runs cmake and make, then executes your program.
-USE
-\tRun \"cpp_run\" without any options wherever your CMake file is located."
+    case $FLAG in
+        -h | --help)
+    echo -e "USE
+\tRun \"${PROGRAM_NAME}\" without any options wherever your CMake file is located.
+DESCRIPTION
+\tA simple script that runs cmake and make, then executes your program."
+            exit $EXIT_SUCCESS
+    esac
 }
 
 cpp_run

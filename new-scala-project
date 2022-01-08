@@ -1,0 +1,77 @@
+#!/usr/bin/bash
+
+FLAG=$1
+PROJECT_NAME=$1
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
+
+new-scala-project (){
+
+    new-scala-project-help
+
+    sbt new scala/hello-world.g8 --name=$PROJECT_NAME
+    setup-build-file 
+    setup-plugins-file 
+
+    print-sbt-command-info
+
+    exit $EXIT_SUCCESS
+}
+
+setup-build-file (){
+    echo -e 'Global / onChangedBuildSource := ReloadOnSourceChanges
+    libraryDependencies ++= Seq(
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+    "io.spray" %% "spray-json" % "1.3.6",
+    "org.apache.spark" %% "spark-core" % "3.2.0",
+    "org.apache.spark" %% "spark-sql" % "3.2.0" % "provided"
+    )
+    lazy val root = (project in file(".")) // Determines the baseDirectory
+        .settings(
+            scalaVersion := "2.13.3",
+            name := "default", // Change this to whatever you want
+            version := "0.0.0",
+            Compile / mainClass := Some("Main"), // The name of your Main File
+            assembly / mainClass := Some("Main"),
+            // Sweet Sweet Compile Warnings
+            Compile / console / scalacOptions := Seq(
+            "-language:_", "-depreciation","-Xlint", "-Ywarm-unused",
+            "-Yawrn-dead-code", "-explaintypes", "opt:_", "-Xdev")
+        )'\
+    > $PROJECT_NAME/build.sbt
+}
+setup-plugins-file (){
+    echo 'addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.15.0")' > $PROJECT_NAME/project/plugins.sbt
+}
+
+print-sbt-command-info (){
+    echo -e "------------------------------------------------------------
+\t\tS B T\tC O M M A N D S
+------------------------------------------------------------
+
+ENTER SBT SHELL
+\tsbt
+RUN PROJECT
+\tsbt run
+COMPILE PROJECT
+\tsbt compile
+CREATE FAT JAR FILE
+\tsbt assembly
+
+******************** HAPPY PROGRAMMING *********************
+"
+}
+
+
+new-scala-project-help (){
+    case $FLAG in
+        -h | --help | "")
+            echo -e "USE\tnew-scala-project [project-name]
+
+DESCRIPTION
+\tA script that sets up a new scala project that compiles, runs
+\tand is able to produce a \"fat jar\" from the get-go"
+            exit $EXIT_FAILURE
+    esac
+}
+new-scala-project

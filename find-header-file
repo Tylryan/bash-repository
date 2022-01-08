@@ -11,6 +11,7 @@ FLAG=$1
 SUCCESS=0
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
 
 find_source_code (){
     find_source_code_help
@@ -19,7 +20,6 @@ find_source_code (){
     [[ $? -ne $SUCCESS ]] && exit $EXIT_FAILURE
     nvim $PATH_TO_HEADER_FILES/$header_file
 
-
     exit $EXIT_SUCCESS
 
 }
@@ -27,9 +27,11 @@ find_source_code (){
 find_source_code_help (){
     case $FLAG in
         -h | --help)
-            echo -e "DESCRIPTION
+            echo -e "USE
+\tRun ${PROGRAM_NAME} without any flags or options.
+DESCRIPTION
 \tA script that searches your /usr/include directory and takes you
-\tto whichever header file you choose"
+\tto whichever header file you choose."
             exit $EXIT_SUCCESS;;
     esac
 

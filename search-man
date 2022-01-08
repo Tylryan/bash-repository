@@ -2,16 +2,11 @@
 
 SEARCH_TERM=$1
 NARROW_SEARCH=^${SEARCH_TERM}
-FLAG=$2
+FLAG=$2 
 EXIT_SUCCESS=0
-
+PROGRAM_NAME=$(echo $0 | tr "/" '\n' | tail -n1)
 search-man (){
-    case $SEARCH_TERM in
-        -h | --help)
-            search-man-help
-            exit $EXIT_SUCCESS;;
-    esac
-
+    search-man-help
     case $FLAG in
         -b)  # Broad Search
             man -k $SEARCH_TERM | grep -w $SEARCH_TERM --color;;
@@ -26,15 +21,19 @@ search-man (){
 
 
 search-man-help(){
-    echo -e "DESCRIPTION
+    case $SEARCH_TERM in
+        -h | --help)
+        echo -e "USE
+\t$PROGRAM_NAME [search_term] [options]
+
+DESCRIPTION
 \tProvides a more refined result when searching the man pages
-USE
-\tsearch-man [search_term] [options]
 OPTIONS
 \t-b\tBroad search
 \t-B\tVery Broad Search
 DEFAULT OPTION
 \tNarrow Search is set by default"
+        exit $EXIT_SUCCESS;;
+    esac
 }
 search-man
-
