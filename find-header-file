@@ -26,7 +26,7 @@ find_source_code (){
 
 find_source_code_help (){
     case $FLAG in
-        -h | --help)
+        -h | --help )
             echo -e "USE
 \tRun ${PROGRAM_NAME} without any flags or options.
 DESCRIPTION

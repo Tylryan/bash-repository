@@ -1,5 +1,40 @@
 #!/usr/bin/bash
-cat /var/log/pacman.log | \
-    grep -i "system upgrade" | cut -d'[' -f2 | \
-    cut -d']' -f1 | cut -d'-' -f1-3 | tr "T" " " | \
-    tail -n1
+
+SUCCESS=0
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
+FLAG=$1
+
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+
+last-system-update(){
+    last-system-update-help
+    get-last-update
+}
+
+
+get-last-update(){
+    cat /var/log/pacman.log | \
+        grep -i "system upgrade" | cut -d'[' -f2 | \
+        cut -d']' -f1 | cut -d'-' -f1-3 | tr "T" " " | \
+        tail -n1
+
+    return $SUCCESS
+}
+
+last-system-update-help(){
+help_text="USE\n
+\tRun $PROGRAM_NAME without any options or arguments\n
+DESCRIPTION\n
+\tTells you the date and time of the last time you ran a system update."
+    case $FLAG in
+        -h | --help)
+    exit $EXIT_FAILURE;;
+
+        # *)
+        #     echo -e "\"${FLAG:2}\" is not a valid option\n"
+        #     echo -e $help_text
+        #     exit $EXIT_FAILURE;;
+    esac
+}
+last-system-update
