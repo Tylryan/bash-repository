@@ -51,7 +51,7 @@ DEFAULT OPTION
     The default commit message is the current date.
 EXAMPLES
     $PROGRAM_NAME
-    $PROGRAM_NAME : This is my short message
+    $PROGRAM_NAME : \"This is my short message\"
     $PROGRAM_NAME -l"
 }
 
