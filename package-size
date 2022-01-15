@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+EXIT_FAILURE=1
+EXIT_SUCCESS=0
+
+ARGS=$#
+SEARCH_TERM=$1
+
+check_args(){
+    check_flags
+    [[ $ARGS -gt 1 ]] && print_help_message && exit $EXIT_SUCCESS
+    [[ $SEARCH_TERM != "" ]] && look_up_package_sizes && exit $EXIT_SUCCESS || exit $EXIT_FAILURE
+    fzf_search_package  
+    look_up_package_sizes
+}
+
+fzf_search_package(){
+    SEARCH_TERM=$(yay -Qq | fzf)
+    [[ $? -ne $EXIT_SUCCESS ]] && exit $EXIT_FAILURE
+}
+
+
+look_up_package_sizes (){
+    yay -Qi $SEARCH_TERM | grep "Installed Size"
+}
+
+check_flags(){
+    case $SEARCH_TERM in 
+        -h | --h | -*)
+            print_help_message
+            exit $EXIT_SUCCESS;;
+    esac
+}
+
+print_help_message(){
+    echo -e "USAGE
+    $PROGRAM_NAME [package-name]
+DESCRIPTION
+    Tells you the size of a specific package
+    Enter nothing to Fuzzy search the package
+EXAMPLES
+    $PROGRAM_NAME brave-bin
+    $PROGRAM_NAME
+    "
+}
+
+check_args

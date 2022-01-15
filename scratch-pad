@@ -33,7 +33,7 @@ scratch-pad(){
             cd $practice_directory/Rust/scratch
             nvim src/main.rs;;
         scala)
-            cd $practice_directory/Scala/Basics/scratch
+            cd $practice_directory/Scala/scratch
             nvim src/main/scala/Main.scala;;
         sh | bash)
             cd $practice_directory/Bash-Scripting/scratch

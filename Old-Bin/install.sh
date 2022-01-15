@@ -1,30 +1,6 @@
 #! /usr/bin/bash
 
 # THIS INSTALL SCRIPT IS PRETTY REDUNDANT
-# git clone git@Tylryan/bash_repository bin
-# That works better
-
-
-# You can still use the echo PATH and reboot options though
-
-# options=$1
-
-# Make the files executable
-# chmod 744 `ls`
-
-# Copy the files to bin if there. If not, make them and move there.
-# cp -r `ls` ~/bin || mkdir ~/bin ; cp -r `ls` ~/bin &&
-# Go back a directory
-# cd ..
-
-# If "~/bin/ exists, then copy all bash_repository contents to it"
-# if [ -d "~/bin/" ];then
-#     cp bash_repository/* ~/bin/
-# Else, make that directory then ...
-# else
-#     mkdir ~/bin/ && cp bash_repository/* ~/bin/ 
-# fi
-
 # Checks to see if you have zsh
 case $SHELL in 
 	/usr/bin/zsh)

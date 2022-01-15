@@ -28,10 +28,10 @@ find_source_code_help (){
     case $FLAG in
         -h | --help )
             echo -e "USE
-\tRun ${PROGRAM_NAME} without any flags or options.
+    Run ${PROGRAM_NAME} without any flags or options.
 DESCRIPTION
-\tA script that searches your /usr/include directory and takes you
-\tto whichever header file you choose."
+    A script that searches your /usr/include directory and takes you
+    to whichever header file you choose."
             exit $EXIT_SUCCESS;;
     esac
 

@@ -38,6 +38,7 @@ display_help_message(){
 DESCRIPTION
 \tSearches the web from your terminal using Elinks
 OPTIONS
+\tNo Args is equivalent to running \"elinks\"
 \t--google \t-g\tUse Google's Search Engine (Default = Duckduckgo)
 \t--bing  \t-b\tUse Google's Search Engine (Default = Duckduckgo)
 \t--help  \t-h\tShows this message and quits
@@ -49,10 +50,11 @@ EXAMPLES
 }
 check_flags() {
     case $FLAG in
-        -h | --help | "")
+        -h | --help)
             display_help_message
         exit $EXIT_SUCCESS
         ;;
+
     -g | --google)
         ARGS=(${@:3}) #TODO This piece of code doesn't actually do anything
         SEARCH_ENGINE="google.com"
@@ -64,10 +66,16 @@ check_flags() {
         SEARCH_LINGO="/search?q="
         ;;
 
+    "") 
+        elinks
+        exit $EXIT_SUCCESS
+        ;;
+
     -*) # If they enter any other command, then display the help message
         echo -e "${RED}Err: Invalid Option ($FLAG)${NO_COLOR}"
         display_help_message
         exit $EXIT_FAILURE
+        ;;
 
     esac
 }

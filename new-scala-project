@@ -50,13 +50,13 @@ print-sbt-command-info (){
 ------------------------------------------------------------
 
 ENTER SBT SHELL
-\tsbt
+    sbt
 RUN PROJECT
-\tsbt run
+    sbt run
 COMPILE PROJECT
-\tsbt compile
+    sbt compile
 CREATE FAT JAR FILE
-\tsbt assembly
+    sbt assembly
 
 ******************** HAPPY PROGRAMMING *********************
 "
@@ -66,11 +66,11 @@ CREATE FAT JAR FILE
 new-scala-project-help (){
     case $FLAG in
         -h | --help | "")
-            echo -e "USE\tnew-scala-project [project-name]
+            echo -e "USE    new-scala-project [project-name]
 
 DESCRIPTION
-\tA script that sets up a new scala project that compiles, runs
-\tand is able to produce a \"fat jar\" from the get-go"
+    A script that sets up a new scala project that compiles, runs
+    and is able to produce a \"fat jar\" from the get-go"
             exit $EXIT_FAILURE
     esac
 }
