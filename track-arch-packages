@@ -1,0 +1,116 @@
+#!/usr/bin/bash
+
+PACKAGE_FILE_LOCATION=~/Bin/arch-packages.txt
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
+
+ARG_LEN=$#
+ARGS=($@)
+LIST_N=25
+PACKAGE_TO_ADD=""
+PACKAGE_NAME=""
+# List the last n packages downloaded
+installed_package_list=$(
+    awk '/pacman -S --config/{print $NF}' /var/log/pacman.log | 
+        tr -d "'" | tail -n$LIST_N | uniq
+)
+pretty_search(){
+    echo $installed_package_list | 
+        tr ' ' '\n' | nl -nln
+    exit $EXIT_SUCCESS
+}
+
+check_arg_len_is_gt_1(){
+    [[ $ARG_LEN -gt 1 ]] && exit $EXIT_FAILURE
+}
+
+add_packages(){
+    if [[ $ARG_LEN -gt 2 ]];then 
+        for arg in ${ARGS[@]:1}
+            do
+            PACKAGE_TO_ADD=$arg
+            PACKAGE_NAME=$(pretty_search | grep -w ^$PACKAGE_TO_ADD | awk '{print $2}')
+            # Check if package is already in file
+            grep -w $PACKAGE_NAME $PACKAGE_FILE_LOCATION 1>/dev/null
+            # If the package is not already in the file, then add it
+            if [[ $? -gt 0 ]];then
+                echo $PACKAGE_NAME >> $PACKAGE_FILE_LOCATION || exit 1
+                echo "Added: \"$PACKAGE_NAME\" to $PACKAGE_FILE_LOCATION"
+            else 
+                echo "Package \"$PACKAGE_NAME\" NOT added: Already in file"
+            fi
+        done
+
+        exit $EXIT_SUCCESS
+    else
+        PACKAGE_TO_ADD=${ARGS[1]}
+        PACKAGE_NAME=$(pretty_search | grep -w ^$PACKAGE_TO_ADD | awk '{print $2}')
+        grep -w $PACKAGE_NAME $PACKAGE_FILE_LOCATION 1>/dev/null
+        # If the package is not already in the file, then add it
+        if [[ $? -gt 0 ]];then
+            echo $PACKAGE_NAME >> $PACKAGE_FILE_LOCATION || exit $EXIT_FAILURE
+            echo "Added: \"$PACKAGE_NAME\" to $PACKAGE_FILE_LOCATION"
+        else
+            echo "Package \"$PACKAGE_NAME\" NOT added: Already in file"
+        fi
+
+        exit $EXIT_SUCCESS
+    fi
+}
+
+print_help_message(){
+    echo -e "USAGE      $PROGRAM_NAME [options] [args]
+
+DESCRIPTION
+    $PROGRAM_NAME is used to keep track of the packages you've actually installed. yay -Qqe lists all 
+    explicitly installed packages. However, most of them are not packages you've installed using yay. 
+    They might be dependencies to packages you've explicitly installed.
+OPTIONS
+    -h      --help                      Displays this message
+    -a      --add-packages              Adds 1 or more packages to your package file.
+    -i      --install-packages          Installs all packages specified in your package file.
+    -l      --list-packages             Lists most recently installed packages regardless of whether
+                                        or not they are still installed.
+ADDITIONAL NOTES
+    1. Make sure you specify the package file location in the $PROGRAM_NAME script 
+        wherever that might be located. 
+        The DEFAULT LOCATION is ~/Bin/arch-packages.txt"
+}
+
+############################# DRIVER FUNCTION  ################################
+
+track_arch_packages(){
+    [[ -z $PACKAGE_FILE_LOCATION ]] || touch $PACKAGE_FILE_LOCATION
+    case ${ARGS} in 
+        -a | --add-packages)
+            add_packages
+            ;;
+
+        -i | --install)
+            check_arg_len_is_gt_1
+            yay -Syu || exit $EXIT_FAILURE
+            yay -S $(cat $PACKAGE_FILE_LOCATION | tr '\n' ' ')
+            exit $EXIT_SUCCESS
+            ;;
+
+        -l | --list)
+            check_arg_len_is_gt_1
+            pretty_search
+            exit $EXIT_SUCCESS
+            ;;
+
+        -h | --h | "" | -*)
+            print_help_message
+            exit $EXIT_SUCCESS
+            ;;
+
+        *)
+            print_help_message
+            exit $EXIT_SUCCESS
+            ;;
+    esac
+}
+
+track_arch_packages

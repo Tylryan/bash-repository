@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+# Not used an end user script. Used for Polybar
+memory_used=$(free | awk 'NR == 2 {printf "%.2fMb ", $3/1024}')
+app_using_most_memory=$(
+    ps auxc | tr -s ' ' | 
+    awk 'NR != 1 {print $4" "$11}' | 
+    sort -k1 -rh | 
+    awk 'NR == 1 {print $2}'
+)
+
+
+echo $memory_used [$app_using_most_memory]
+

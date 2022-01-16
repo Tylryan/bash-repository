@@ -7,7 +7,7 @@ ram-used (){
     ram-used-help
     while [[ 1 ]];do
         clear
-        free -h | tr -s ' ' | cut -d' ' -f3 | head -n2
+        free -h | awk 'NR == 2 {print $3}' | sed 's/[a-zA-z]//g'
         sleep 1.5
     done
     exit $EXIT_SUCCESS
