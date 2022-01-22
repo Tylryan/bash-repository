@@ -4,7 +4,7 @@ SEARCH_TERM=$1
 NARROW_SEARCH=^${SEARCH_TERM}
 FLAG=$2 
 EXIT_SUCCESS=0
-PROGRAM_NAME=$(echo $0 | tr "/" '\n' | tail -n1)
+PROGRAM_NAME=$(basename $0)
 
 search-man (){
     search-man-help

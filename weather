@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+# https://www.timeanddate.com/weather/usa/dallas
+PROGRAM_NAME=$(basename $0)
+CITY="dallas"
+
+# Use this so as to only pull once
+data=$(curl -s https://www.timeanddate.com/weather/usa/dallas)
+
+get_temp(){
+    echo $data | sed 's/<div class=h2>/~/g' | 
+        cut -d'~' -f2 | cut -d'<' -f1 | cut -d'&' -f1
+}
+get_discription(){
+    echo $data | grep -m1 "F</div" | 
+        sed 's/<p>/~/g' | cut -d'~' -f2 | cut -d'.' -f1
+}
+fahrenhiet=$(get_temp)
+let "celcius=($fahrenhiet - 32) / 2"
+description=$(get_discription)
+echo "$description, $celcius°C"

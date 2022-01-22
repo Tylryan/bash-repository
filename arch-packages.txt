@@ -135,3 +135,5 @@ zathura-pdf-mupdf
 zsh
 apache-spark
 dillo
+neomutt
+pass

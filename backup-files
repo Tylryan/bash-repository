@@ -1,0 +1,82 @@
+#!/usr/bin/bash
+
+# Takes about 5-10 minutes
+
+PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+
+FLAG=$1
+BACK_UP_LOCATION=~/Ex-Drive
+BACK_UP_CONFIG_DIR="Dotfiles"
+
+CONFIGS_TO_BACKUP=(
+    alacritty awesome bspwm nvim polybar task zsh xfce4/terminal elinks lynx qutebrowser
+)
+DOCUMENTS_TO_BACKUP=(
+    Bin Documents Pictures Notes Applications
+    )
+
+backup_configs(){
+    for dir in ${CONFIGS_TO_BACKUP[@]};do
+        echo "Backing Up $dir"
+        sudo rm -rf $BACK_UP_LOCATION/$BACK_UP_CONFIG_DIR 2>/dev/null
+        sudo cp -ru ~/.config/$dir $BACK_UP_LOCATION/$BACK_UP_CONFIG_DIR 2>/dev/null
+    done
+}
+
+# TODO: Make this a list like the configs
+backup_documents(){
+    for dir in ${DOCUMENTS_TO_BACKUP[@]};do
+        echo "Backing Up $dir"
+        sudo rm -rf $BACK_UP_LOCATION/$dir 2>/dev/null
+        sudo cp -ru ~/$dir $BACK_UP_LOCATION 2>/dev/null
+    done
+
+}
+# individual_backups(){
+#     sudo cp -ru ~/Documents $BACK_UP_LOCATION
+# }
+
+print_help_message(){
+    echo -e "USAGE      $PROGRAM_NAME [options]
+OPTIONS
+    -h      --help              Dislays this message.
+    -c      --configs           Backs up all configs specified.
+    -d      --documents         Backs up all documents specified.
+DEFAULT
+    Default option is to backup both Documents and Configs."
+}
+
+check_if_drive_is_mounted(){
+    [[ -d $BACK_UP_LOCATION/$BACK_UP_CONFIG_DIR ]]
+    [[ $? -ne 0 ]] && echo "Your external drive might not be mounted." && exit 1
+}
+backup_files(){
+
+
+    case $FLAG in
+        -c | --configs)
+            # check_if_drive_is_mounted
+            backup_configs
+            exit 0
+            ;;
+        -d | documents)
+            # check_if_drive_is_mounted
+            backup_documents
+            exit 0
+            ;;
+
+        -h | --help)
+            print_help_message
+            exit 0
+            ;;
+
+        "")
+            # check_if_drive_is_mounted
+            backup_configs
+            backup_documents
+            exit 0
+            ;;
+        esac
+}
+
+backup_files
