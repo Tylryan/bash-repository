@@ -106,7 +106,8 @@ void run_as_complete_url(UserEntry user_entry, int start_of_args){
          strcat(user_entry.final_url, url);
 
          user_entry.final_url = realloc(user_entry.final_url, 50 * sizeof(char));
-         add_command_ending(&user_entry);
+         // add_command_ending(&user_entry);
+         strcat(user_entry.final_url, " 2>/dev/null");
 
          execute_or_print_error(user_entry.final_url);
 
