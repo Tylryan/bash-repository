@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
     }
 
     if (argc == 1) {
-        run_elinks_no_args(user_entry);
+        run_elinks_with_no_args(user_entry);
         /* free_all_memory(user_entry); */
         exit(EXIT_SUCCESS);
     }
@@ -90,9 +90,10 @@ int main(int argc, char *argv[]){
 
     // If there is a "." in arg1, it's probably a url
     int start_of_args = 1;
-    if ( user_entry.has_flag ) start_of_args = 2;
-    int is_complete_url = contains_a_dot(argv[start_of_args], strlen(argv[start_of_args]));
-    // Should be len of string + 1;
+    if ( user_entry.has_flag ) 
+        start_of_args = 2;
+    char * first_argument = argv[start_of_args];
+    int is_complete_url = contains_a_dot(first_argument, strlen(first_argument));
     
     if (is_complete_url){
         run_as_complete_url(user_entry, start_of_args);
