@@ -145,8 +145,9 @@ DESCRIPTION\n\
 \tSearches the web from your terminal using Elinks.\n\
 OPTIONS\n\
 \tNo args is equivalent to running \"elinks\".\n\
-\t-h\t--help\tShows this message and exits.\n\
-\t-o\t--otter\tRuns otter-browser instead of elinks.\n\
+\t-h\t--help  \tShows this message and exits.\n\
+\t-g\t--google\tRuns Google's (Default Duckduckgo) with Elinks.\n\
+\t-o\t--otter \tRuns otter-browser instead of elinks.\n\
 EXAMPLES\n\
 \t%s google.com\n\
 \t%s how big is the moon?\n", 
