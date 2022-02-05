@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h> // EXIT_SUCCESS/EXIT_FAILURE
 #include <libgen.h>
-#include "./structures.c"
+#include "./headers/structures.h"
 #include <assert.h>
 
 
@@ -13,7 +13,7 @@
 char * RUN_IN_BACKGROUND = " &";
 
 void print_help_message(char * PROGRAM_NAME);
-int contains_a_dot(char * string, int str_len);
+int contains_a_dot(char * string);
 void create_base_url(UserEntry * user_search);
 void send_error_to_dev_null(UserEntry * user_entry);
 void print_help_message(char * argv0);
@@ -111,9 +111,9 @@ void run_as_search_query(UserEntry user_entry){
 }
 
 
-// Does the string contain a dot?
-int contains_a_dot(char * string, int str_len){
-    for (int i = 0; i < str_len; i++) 
+/* Eventually, I want to replace this with a less general "contains"*/
+int contains_a_dot(char * string){
+    for (int i = 0; i < (int) strlen(string); i++) 
 
         if (string[i] == '.') 
             return TRUE;

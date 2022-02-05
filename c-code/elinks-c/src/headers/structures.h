@@ -1,3 +1,5 @@
+#ifndef STRUCTURES_H
+#define STRUCTURES_H
 typedef enum SearchEngine { duck, google } SearchEngine;
 
 typedef struct UserEntry {
@@ -14,3 +16,4 @@ typedef struct UserEntry {
     char *  final_url;
     char *  alternative_gui_browser;
 } UserEntry;
+#endif

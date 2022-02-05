@@ -1,7 +1,7 @@
 CC=gcc
-EXE=elinks-search
+EXE=out
 OUT_DIR=dist
-MAIN_PATH=src/main.c
+MAIN_PATH=./src/*.c
 CFLAGS=-Wall -Wextra -Werror -O3 $(MAIN_PATH) -o $(OUT_DIR)/$(EXE)
 
 all:
