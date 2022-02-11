@@ -2,16 +2,13 @@
 #include <string.h>
 #include <stdlib.h> 
 
-//
-#include "./headers/helper_functions.h"
-#include "./headers/main_functions.h"
-#include "./headers/argument_parser.h"
+#include "./headers/functions.h"
 
 #define TRUE 1
 #define FALSE 0
 
 // Make sure you add a space at the end
-char ALTERNATIVE_GUI_BROWSER[] = "/usr/bin/otter-browser ";
+char ALTERNATIVE_GUI_BROWSER[] = "otter-browser ";
 char ELINKS_CONFIG_PATH[]      = "-config-dir ~/.config/elinks ";
 
 // #######################  MAIN #############################################

@@ -1,39 +1,90 @@
 #!/usr/bin/bash
 
-SEARCH_TERM=$1
-NARROW_SEARCH=^${SEARCH_TERM}
-FLAG=$2 
+if [[ $1 =~ "-" ]];then
+    FLAG=$1
+    SEARCH_TERM=$2
+else
+    SEARCH_TERM=$1
+    FLAG=$2
+fi
+
 EXIT_SUCCESS=0
 PROGRAM_NAME=$(basename $0)
 
 search-man (){
     search-man-help
     case $FLAG in
-        -b)  # Broad Search
+        -b | --broad)
             man -k $SEARCH_TERM | grep -w $SEARCH_TERM --color;;
-        -B) # VERY BROAD
+        -B | --very-broad) 
             man -k $SEARCH_TERM | grep $SEARCH_TERM --color;;
-        *) # Default is a narrow search
-            man -k $SEARCH_TERM | grep -w $NARROW_SEARCH --color;;
+        -r | --regex) 
+            man -k $SEARCH_TERM | grep "$SEARCH_TERM" --color;;
+        -e | --exact-match) 
+            man -k $SEARCH_TERM | grep -w "^$SEARCH_TERM" --color;;
+        *) # Default search is "starts with"
+            man -k $SEARCH_TERM | grep "^$SEARCH_TERM" --color;;
     esac
 
+    echo 
     exit $EXIT_SUCCESS
 }
 
 
 search-man-help(){
-    case $SEARCH_TERM in
+    case $FLAG in
         -h | --help)
-        echo -e "USE
-\t$PROGRAM_NAME [search_term] [options]
+        echo -e "USAGE $PROGRAM_NAME [options] search_term
 
 DESCRIPTION
-\tProvides a more refined result when searching the man pages
+    Provides a more refined result when searching the man pages
+
 OPTIONS
-\t-b\tBroad search
-\t-B\tVery Broad Search
-DEFAULT OPTION
-\tNarrow Search is set by default"
+    -b  --broad                    Broad search
+    -B  --very-broad               Very broad search
+    -e  --exact-match              Very broad search
+    -r  --regex                    Custom regex search
+
+OPTION DESCRIPTIONS
+    DEFAULT
+        The default option will search for any partial match that STARTS at the 
+        beginning of the line. This will also display every section
+        associated with a search term.
+
+        Utility:
+            - Used when you want to know every section related to any result 
+                that partially matches your search term.
+            - Used when you partially know the start of a search term.
+
+    BROAD
+        A broad search will look for an exact match regardless of its position 
+        in a line.
+
+        Utility:
+            - Used when you have an idea of what you want to look for, but 
+                don't know the exact word.
+
+    VERY BROAD
+        A very broad search will look for a partial match in any part of a line.
+
+        Utility:
+            - Used as a last resort when you have only the vaguest idea of what 
+            you are searching for.
+
+    EXACT MATCH
+        This will return an exact match of the word you entered that also 
+        appears at the beginning of the line. Like the default search, an exact
+        search will display every section associated with a search term.
+
+        Utility:
+            - Used when you want to know every section related to a result that 
+            exactly matches your search term.
+
+    REGEX
+        This search allows you to define your own regular expression to be used 
+        in a search.
+
+" | less
         exit $EXIT_SUCCESS;;
     esac
 }

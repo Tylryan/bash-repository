@@ -2,17 +2,31 @@
 
 # Takes about 5-10 minutes
 
-PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+EXIT_SUCCESS=0
+EXIT_FAILURE=1
 
-FLAG=$1
-BACK_UP_LOCATION=~/Ex-Drive
+# PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+PROGRAM_NAME=$(basename $0)
+
+FLAG=
+BACK_UP_LOCATION=
+
+if [[ $1 =~ "-" ]];then
+    FLAG=$1
+    BACK_UP_LOCATION=$2
+else 
+    BACK_UP_LOCATION=$1
+    FLAG=$2
+fi
+
 BACK_UP_CONFIG_DIR="Dotfiles"
+
 
 CONFIGS_TO_BACKUP=(
     alacritty awesome bspwm nvim polybar task zsh xfce4/terminal elinks lynx qutebrowser
 )
 DOCUMENTS_TO_BACKUP=(
-    Bin Documents Pictures Notes Applications
+    Bin Documents Pictures Notes
     )
 
 backup_configs(){
@@ -37,46 +51,56 @@ backup_documents(){
 # }
 
 print_help_message(){
-    echo -e "USAGE      $PROGRAM_NAME [options]
+    echo -e "USAGE      $PROGRAM_NAME [options] target-drive
 OPTIONS
     -h      --help              Dislays this message.
-    -c      --configs           Backs up all configs specified.
-    -d      --documents         Backs up all documents specified.
+    -c      --configs           Backs up only configs specified.
+    -d      --documents         Backs up only documents specified.
 DEFAULT
     Default option is to backup both Documents and Configs."
 }
 
 check_if_drive_is_mounted(){
-    [[ -d $BACK_UP_LOCATION/$BACK_UP_CONFIG_DIR ]]
-    [[ $? -ne 0 ]] && echo "Your external drive might not be mounted." && exit 1
+    echo HELLO
+    # if [[ $# -eq 0 ]];then
+    #     echo "Too few arguments"
+    # fi
+    # [[ -z $BACK_UP_LOCATION ]] && echo "TRUE"
+
+    # [[ -d $BACK_UP_LOCATION/$BACK_UP_CONFIG_DIR ]]
+    # [[ $? -ne 0 ]] && echo "Your external drive might not be mounted." && exit $EXIT_FAILURE
 }
 backup_files(){
+    echo $FLAG
+    echo $BACK_UP_LOCATION
 
+    # check_if_drive_is_mounted()
 
-    case $FLAG in
-        -c | --configs)
-            # check_if_drive_is_mounted
-            backup_configs
-            exit 0
-            ;;
-        -d | documents)
-            # check_if_drive_is_mounted
-            backup_documents
-            exit 0
-            ;;
+    # case $FLAG in
+    #     -c | --configs)
+    #         # check_if_drive_is_mounted
+    #         backup_configs
+    #         exit 0
+    #         ;;
+    #     -d | documents)
+    #         # check_if_drive_is_mounted
+    #         backup_documents
+    #         exit 0
+    #         ;;
 
-        -h | --help)
-            print_help_message
-            exit 0
-            ;;
+    #     -h | --help)
+    #         print_help_message
+    #         exit 0
+    #         ;;
 
-        "")
-            # check_if_drive_is_mounted
-            backup_configs
-            backup_documents
-            exit 0
-            ;;
-        esac
+    #     "")
+    #         # check_if_drive_is_mounted
+    #         backup_configs
+    #         backup_documents
+    #         exit 0
+    #         ;;
+    #     esac
+    # exit 1
 }
 
 backup_files

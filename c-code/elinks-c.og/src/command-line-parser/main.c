@@ -40,7 +40,7 @@ int main(int argc, char ** argv)
 void args_without_options(int argc, char ** args, int option_index)
 {
     int has_options = option_index != 0;
-    int no_args = has_options && argc == 2;
+    int no_args     = has_options && argc == 2;
     if (no_args)
         return;
 
