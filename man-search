@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+# I alias this to "sman"
 if [[ $1 =~ "-" ]];then
     FLAG=$1
     SEARCH_TERM=$2

@@ -9,6 +9,7 @@
 #include "../headers/helper_functions.h"
 #endif
 
+// replaces argc < 2
 int main(int argc, char ** argv)
 {
     server_info_t server_info = {
@@ -34,6 +35,10 @@ int main(int argc, char ** argv)
 
     else if (argc < 2)
     {
+        //TODO
+        // Replace current function with this
+        // ssh -t -p $SERVER_PORT $SERVER_ADDRESS "rm -rf /home/user/external-drive/documents"
+        // scp -r -P $SERVER_PORT documents $SERVER_ADDRESS:/home/user/external-drive/documents
         char * from_path = "~/documents";
         char * to_path   = "external-drive/documents";
         copy_content_to_server_path(server_info, from_path, to_path);
