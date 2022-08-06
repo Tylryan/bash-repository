@@ -40,8 +40,8 @@ void set_battery_icon(char * icon, int battery_level)
     char * empty    = "  ";
 
     int is_full     = battery_level == 100;
-    int is_quarters = battery_level >= 75;
-    int is_half     = battery_level >= 50;
+    int is_quarters = battery_level >= 55;
+    int is_half     = battery_level >= 35;
     int is_quarter  = battery_level >= 10;
     int is_empty    = battery_level < 10;
 
