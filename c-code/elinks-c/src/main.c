@@ -47,6 +47,7 @@ int main(int argc, char *argv[]){
     int start_of_args = 1;
     if ( user_entry.has_flag ) 
         start_of_args = 2;
+    
     char * first_argument = argv[start_of_args];
     int is_complete_url   = contains_a_dot(first_argument);
     
