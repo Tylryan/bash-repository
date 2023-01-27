@@ -5,60 +5,47 @@ EXIT_SUCCESS=0
 EXIT_FAILURE=1
 FLAG=$1
 language=$1
-practice_directory=~/Notes/Computers/Coding/Coding-Languages
+practice_directory=/tmp/code/${language}
+valid_langs=(asm c cpp java js py rs scala)
 
-scratch-pad(){
+scratch-pad()
+{
     scratch-pad-help
     # If no language is specified, exit
-    [[ $language == "" ]] && echo "Err: No argument entered" && exit $EXIT_FAILURE
+    [[ ${language} == "" ]] && echo "Err: No argument entered" && exit $EXIT_FAILURE
 
-    case $language in
-        asm | assembly)
-            cd $practice_directory/Assembly/basics/scratch/
-            nvim main.asm;;
-        c)
-            cd $practice_directory/C/scratch
-            nvim src/branch.c;;
-        cpp)
-            cd $practice_directory/Cpp/scratch/
-            nvim src/branch.cpp;;
-        js | javascript)
-            cd $practice_directory/Javascript/scratch
-            nvim main.js;;
-        py | python)
-            # I chose to cd to the directory so that you could add files delete files more easily
-            cd $practice_directory/Python/scratch
-            nvim src/scratch.py;;
-        rs | rust)
-            cd $practice_directory/Rust/scratch
-            nvim src/main.rs;;
-        scala)
-            cd $practice_directory/Scala/scratch
-            nvim src/main/scala/Main.scala;;
-        sh | bash)
-            cd $practice_directory/Bash-Scripting/scratch
-            nvim main.sh;;
-        *)
-            echo "Err: $language is not a valid entry"
-            exit $EXIT_FAILURE;;
-    esac
-    exit $EXIT_SUCCESS
+    for lang in ${valid_langs[@]}
+    do 
+        if [[ $lang == ${language} ]];then
+            cd_in_cd_back ${practice_directory}/main.${language}
+            exit ${EXIT_SUCCESS}
+        fi
+    done
+
+    echo "Err: $language is not a valid entry"
+    exit ${EXIT_FAILURE}
 }
 
-scratch-pad-help(){
+cd_in_cd_back()
+{
+    [[ -d ${practice_directory} ]] || mkdir -p ${practice_directory}
+    cd ${practice_directory}
+    nvim $1
+    cd -
+}
+
+scratch-pad-help()
+{
     case $FLAG in
         -h | --help)
             echo -e "USE
-\tscratch-pad [arg]
+    scratch-pad [arg]
 DESCRIPTION
-\tA script that takes you to an empty template of your desired language.
+    A script that takes you to an empty template of your desired language.
 SUPPORTED ARGS
-\tassembly, bash, c, cpp, javascript, python, rust, scala"
+    asm, bash, c, cpp, java, js, py, rs, scala"
             exit $EXIT_SUCCESS;;
     esac
 }
 
 scratch-pad
-
-
-

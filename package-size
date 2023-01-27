@@ -37,8 +37,10 @@ print_help_message(){
     echo -e "USAGE
     $PROGRAM_NAME [package-name]
 DESCRIPTION
-    Tells you the size of a specific package
-    Enter nothing to Fuzzy search the package
+    Tells you the size of a specific package.
+    Enter nothing to Fuzzy search the package.
+
+    Only works on Arch Linux
 EXAMPLES
     $PROGRAM_NAME brave-bin
     $PROGRAM_NAME

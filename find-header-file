@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
+# --------------------------------------------------------
 # Find the source code to a C header file 
 # Same thing as "gf" in vim, but you don't need to be in vim to use it.
+# --------------------------------------------------------
 
 # EXIT_STATUS=$($?) # Can't get this to work
 PATH_TO_HEADER_FILES='/usr/include'

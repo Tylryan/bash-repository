@@ -1,11 +1,40 @@
 #!/usr/bin/bash
 
+# -------------------------------------------------------------
+# A program that checks the last time you updated your system. 
+# -------------------------------------------------------------
+
 SUCCESS=0
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
 FLAG=$1
 
 PROGRAM_NAME=$(echo $0 | tr '/' '\n' | tail -n1)
+
+#TODO: Figure out what the equivalent package for "dateutils"
+# is for arch linux
+
+function run() 
+{
+    distro=$(uname -n)
+    case ${distro} in 
+        "fedora")  last_fedora_up_grade_date;;
+        "arch" ) last-system-update && break || 
+            echo "ERROR: FAILED TO IDENTIFY DISTRO" && break;;
+        *)
+            break;;
+    esac
+}
+
+last_fedora_up_grade_date() 
+{
+    last_upgrade=$(dnf history | grep upgrade | tr -s ' ' | cut -d'|' -f 3 | cut -d' ' -f 2 | head -n 1)
+    last_update=$(dnf history | grep update | tr -s ' ' | cut -d'|' -f 3 | cut -d' ' -f 2 | head -n 1)
+    last_uu=${last_upgrade:-${last_update}}
+    today=$(date +"%Y-%m-%d")
+
+    echo $(datediff ${last_uu} ${today}) Days
+}
 
 last-system-update(){
     last-system-update-help
@@ -29,12 +58,8 @@ DESCRIPTION\n
 \tTells you the date and time of the last time you ran a system update."
     case $FLAG in
         -h | --help)
-    exit $EXIT_FAILURE;;
-
-        # *)
-        #     echo -e "\"${FLAG:2}\" is not a valid option\n"
-        #     echo -e $help_text
-        #     exit $EXIT_FAILURE;;
+            exit $EXIT_FAILURE;;
     esac
 }
-last-system-update
+# last-system-update
+run

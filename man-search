@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
+# -----------------------------------------------
+# A far superior way to search man pages than `man -k "keyword"`
 # I alias this to "sman"
+# -----------------------------------------------
+#
 if [[ $1 =~ "-" ]];then
     FLAG=$1
     SEARCH_TERM=$2

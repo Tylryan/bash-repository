@@ -5,8 +5,8 @@ PROJECT_NAME=$1
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
-new-scala-project (){
-
+new-scala-project ()
+{
     new-scala-project-help
 
     sbt new scala/hello-world.g8 --name=$PROJECT_NAME
@@ -18,7 +18,8 @@ new-scala-project (){
     exit $EXIT_SUCCESS
 }
 
-setup-build-file (){
+setup-build-file ()
+{
     echo -e 'Global / onChangedBuildSource := ReloadOnSourceChanges
     libraryDependencies ++= Seq(
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
@@ -40,11 +41,13 @@ setup-build-file (){
         )'\
     > $PROJECT_NAME/build.sbt
 }
-setup-plugins-file (){
+setup-plugins-file ()
+{
     echo 'addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.15.0")' > $PROJECT_NAME/project/plugins.sbt
 }
 
-print-sbt-command-info (){
+print-sbt-command-info ()
+{
     echo -e "------------------------------------------------------------
 \t\tS B T\tC O M M A N D S
 ------------------------------------------------------------
@@ -63,7 +66,8 @@ CREATE FAT JAR FILE
 }
 
 
-new-scala-project-help (){
+new-scala-project-help ()
+{
     case $FLAG in
         -h | --help | "")
             echo -e "USE    new-scala-project [project-name]

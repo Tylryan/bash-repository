@@ -8,17 +8,18 @@ SUCCESS=1
 cont=true
 PROGRAM_NAME=$(echo $basename $0)
 
-ssh_setup() {
-
+ssh_setup() 
+{
     get_user_info
     create_ssh_keys
     copy_ssh_pub_to_clipboard
     setup_git_config
 
-    exit $EXIT_SUCCESS
+    exit ${EXIT_SUCCESS}
 }
 
-get_user_info() {
+get_user_info() 
+{
     while [[ $cont == true ]]
     do
         read -r -p "Enter Your Email Address: " email
@@ -28,17 +29,19 @@ get_user_info() {
             cont=false
         fi
     done
-    return $SUCCESS
+    return ${SUCCESS}
 }
 
-create_ssh_keys() {
+create_ssh_keys() 
+{
     ssh-keygen -t ed25519 -C \"$email\" 
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
-    return $SUCCESS
+    return ${SUCCESS}
 }
 
-copy_ssh_pub_to_clipboard() {
+copy_ssh_pub_to_clipboard() 
+{
     echo "******************************************************"
     read -r -p "Which distro do you have? ([a]rch or [d]ebian): " distro
     echo "******************************************************"
@@ -56,10 +59,11 @@ copy_ssh_pub_to_clipboard() {
             wait 2
             ;;
     esac
-    return $SUCCESS
+    return ${SUCCESS}
 }
 
-setup_git_config() {
+setup_git_config() 
+{
     echo "**********************************"
     read -r -p "What is your First Name? " first_name
     read -r -p "What is your Last Name? " last_name
@@ -72,10 +76,11 @@ setup_git_config() {
 
     git config --global user.email $email
     git config --global user.name "$first_name $last_name"
-    return $SUCCESS
+    return ${SUCCESS}
 }
 
-print_help_message(){
+print_help_message()
+{
     echo -e "\
 USAGE $PROGRAM_NAME
 DESCRIPTION
@@ -94,3 +99,4 @@ case $1 in
         ;;
 esac
 
+ssh_setup
