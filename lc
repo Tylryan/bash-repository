@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+# -----------------------------------------
+# A simple script that compiles a Latex file,
+# opens it with an application, and stores
+# it and all associated files in a directory
+# preventing the working directory from 
+# becoming cluttered.
+#
+# Mainly used as a Vim keybind.
+#
+# Written 01/29/23
+# -----------------------------------------
+
+OUT_DIR=out
+LATEX_FILE=*.tex
+PDF_PATH=${OUT_DIR}/*.pdf
+
+PDF_APP=zathura
+
+COMPILER=pdflatex
+FLAGS="--output-directory ${OUT_DIR}"
+
+
+function main()
+{
+    [[ -d ${OUT_DIR} ]] || mkdir ${OUT_DIR}
+    ${COMPILER} ${FLAGS} ${LATEX_FILE}
+    zathura ${PDF_PATH} &
+}
+
+
+main
